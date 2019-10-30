@@ -1,4 +1,5 @@
 package com.pzg.code.sqlproject.controller;
+
 import com.github.pagehelper.PageInfo;
 import com.pzg.code.sqlproject.exception.ServiceException;
 import com.pzg.code.sqlproject.service.ApiService;
@@ -46,11 +47,10 @@ public class SqlQueryController {
     private ApiService apiService;
 
     /**
-     * @Title: selectSql
-     * @Description: TODO(分页获取所有的sql服务)
-     * @return ResultBuilder<HyDataPageInfo<Sql>>    返回类型
      * @param sqlQueryVO
      * @return
+     * @Title: selectSql
+     * @Description: TODO(分页获取所有的sql服务)
      */
     @GetMapping("/list")
     @ApiOperation(value = "分页获取所有的数据", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -66,12 +66,12 @@ public class SqlQueryController {
         }
         List<Sql> sqlList = pageInfo.getList();
         for (Sql sql : sqlList) {
-            RequestResult tableDataCount = apiService.getTableDataCount(sql.getSlId(),"admin_from_inner");
-            if(tableDataCount.isSuccess()) {
-                Map<String,Object> result = (Map<String,Object>) tableDataCount.getResult();
-                if(result!=null&&result.size()>0) {
-                    String countStr = ""+result.get("count");
-                    if(countStr!=null) {
+            RequestResult tableDataCount = apiService.getTableDataCount(sql.getSlId(), "admin_from_inner");
+            if (tableDataCount.isSuccess()) {
+                Map<String, Object> result = (Map<String, Object>) tableDataCount.getResult();
+                if (result != null && result.size() > 0) {
+                    String countStr = "" + result.get("count");
+                    if (countStr != null) {
                         long count = Long.parseLong(countStr);
                         sql.setSMount(count);
                     }
@@ -93,15 +93,15 @@ public class SqlQueryController {
      */
     @PostMapping("/export")
     public void export(HttpServletRequest req,
-                       HttpServletResponse resp, SQLExportVO vo){
-        sqlService.exportExcel(req,resp,vo);
+                       HttpServletResponse resp, SQLExportVO vo) {
+        sqlService.exportExcel(req, resp, vo);
     }
 
     /**
      * 根据用户sql语句查询
      */
     @RequestMapping(value = "/query", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE,method = RequestMethod.GET)
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.GET)
     public RequestResult sqlQuery(@RequestBody Map<String, Object> params) {
         return sqlQueryService.sqlQueryByStoreListConnection(params);
     }
@@ -109,7 +109,7 @@ public class SqlQueryController {
     /**
      * 根据表名查询字段信息
      */
-    @RequestMapping(value = "/{storageId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE,method = RequestMethod.GET)
+    @RequestMapping(value = "/{storageId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.GET)
     public RequestResult getFields(@PathVariable("storageId") String tableName) {
         return sqlQueryService.getFieldsByTableName(tableName);
     }

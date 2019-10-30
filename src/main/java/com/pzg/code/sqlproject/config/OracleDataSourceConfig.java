@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 // 扫描 Mapper 接口并容器管理
-@MapperScan(basePackages = {OracleDataSourceConfig.PACKAGE,OracleDataSourceConfig.PACKAGE_SHIRO}, sqlSessionFactoryRef = "oracleSqlSessionFactory")
+@MapperScan(basePackages = {OracleDataSourceConfig.PACKAGE, OracleDataSourceConfig.PACKAGE_SHIRO}, sqlSessionFactoryRef = "oracleSqlSessionFactory")
 public class OracleDataSourceConfig {
     // 精确到 oracle 目录，以便跟其他数据源隔离
     static final String PACKAGE = "com.hiynn.gybigdata.dao.oracle";
