@@ -1,6 +1,3 @@
-/*
- * Copyright (C), 2013-2019, 天津大海云科技有限公司
- */
 package com.pzg.code.sqlproject.mapper;
 
 import org.apache.ibatis.annotations.Mapper;

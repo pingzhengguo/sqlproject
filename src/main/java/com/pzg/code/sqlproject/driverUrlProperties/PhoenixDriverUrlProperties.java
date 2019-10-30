@@ -5,7 +5,6 @@ import com.pzg.code.sqlproject.vo.DBType;
 import com.pzg.code.sqlproject.vo.DataSourceProperties;
 
 public class PhoenixDriverUrlProperties extends BaseDriverUrlProperties {
-//    jdbc:phoenix:master.haiyun:2181:/hbase-unsecure
     public static final String DEFAULT_DRIVER_CLASS_NAME = "org.apache.phoenix.jdbc.PhoenixDriver";
     private static final String DEFAULT_URL_PATTERN = "jdbc:phoenix:%s:%s:%s";
 

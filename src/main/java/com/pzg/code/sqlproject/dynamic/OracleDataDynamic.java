@@ -11,8 +11,8 @@ import java.util.Map;
 public class OracleDataDynamic extends DataDynamic
 {
     private  String url = "jdbc:oracle:thin:@192.168.1.170:1521:ICATI";
-    private  String user = "cs_haiyun";
-    private  String password = "ca_haiyun";
+    private  String user = "cs_hai";
+    private  String password = "ca_hai";
 
     public OracleDataDynamic(String url, String user, String password){
         this.url=url;
@@ -79,8 +79,8 @@ public class OracleDataDynamic extends DataDynamic
     public static void main(String[] args) throws Exception
     {
           String url = "jdbc:oracle:thin:@192.168.1.170:1521:ICATI";
-          String user = "cs_haiyun";
-          String password = "ca_haiyun";
+          String user = "cs_hai";
+          String password = "ca_hai";
         OracleDataDynamic basedao = new OracleDataDynamic(url, user, password);
         basedao.getConnection();
         if (conn == null)

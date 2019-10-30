@@ -14,8 +14,8 @@ import java.util.Properties;
 public class PhoenixDataDynamic extends DataDynamic
 {
     private  String url = "jdbc:oracle:thin:@192.168.1.170:1521:ICATI";
-    private  String user = "cs_haiyun";
-    private  String password = "ca_haiyun";
+    private  String user = "cs_hai";
+    private  String password = "ca_hai";
 
     public PhoenixDataDynamic(String url, String user, String password){
         this.url=url;
