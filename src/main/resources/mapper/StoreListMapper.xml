@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.pzg.code.sqlproject.mapper.StoreListMapper">
+
+	<resultMap id="BaseResultMap"
+		type="com.pzg.code.sqlproject.vo.StoreList">
+		<id column="SL_ID" jdbcType="VARCHAR" property="slId" />
+		<result column="SL_SLS_ID" jdbcType="VARCHAR" property="slSlsId" />
+		<result column="SL_SLB_ID" jdbcType="VARCHAR" property="slSlbId" />
+		<result column="SL_ST_ID" jdbcType="VARCHAR" property="slStId" />
+		<result column="SL_NAME" jdbcType="VARCHAR" property="slName" />
+		<result column="SL_SLC_ID" jdbcType="VARCHAR"
+			property="slSlcId" />
+		<result column="SL_TABLE_NAME" jdbcType="VARCHAR"
+			property="slTableName" />
+		<result column="SL_REMARK" jdbcType="VARCHAR"
+			property="slRemark" />
+		<result column="IS_DELETE" jdbcType="INTEGER"
+			property="isDelete" />
+		<result column="IS_SENSITIVE" jdbcType="INTEGER"
+			property="isSensitive" />
+		<result column="IS_REGISTER" jdbcType="VARCHAR"
+			property="isRegister" />
+	</resultMap>
+
+	<resultMap id="StoreListVO_Map"
+		type="com.pzg.code.sqlproject.vo.StoreListVO">
+		<id column="SL_ID" jdbcType="VARCHAR" property="slId" />
+		<result column="SL_SLS_ID" jdbcType="VARCHAR" property="slSlsId" />
+		<result column="SL_SLB_ID" jdbcType="VARCHAR" property="slSlbId" />
+		<result column="SL_ST_ID" jdbcType="VARCHAR" property="slStId" />
+		<result column="SL_NAME" jdbcType="VARCHAR" property="slName" />
+		<result column="SL_SLC_ID" jdbcType="VARCHAR"
+			property="slSlcId" />
+		<result column="SL_TABLE_NAME" jdbcType="VARCHAR"
+			property="slTableName" />
+		<result column="SL_REMARK" jdbcType="VARCHAR"
+			property="slRemark" />
+		<result column="IS_DELETE" jdbcType="INTEGER"
+			property="isDelete" />
+		<result column="IS_SENSITIVE" jdbcType="INTEGER"
+			property="isSensitive" />
+		<result column="IS_REGISTER" jdbcType="VARCHAR"
+			property="isRegister" />
+		<result column="ST_NAME" jdbcType="VARCHAR" property="stName" />
+		<result column="SLS_NAME" jdbcType="VARCHAR" property="slsName" />
+		<result column="SLB_NAME" jdbcType="VARCHAR" property="slbName" />
+		<result column="SLC_NAME" jdbcType="VARCHAR" property="slcName" />
+		<result column="SLC_CONTENT" jdbcType="VARCHAR" property="slcContent" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		SL_ID, SL_SLS_ID, SL_SLB_ID, SL_ST_ID, SL_NAME, SL_SLC_ID, SL_TABLE_NAME, SL_REMARK, IS_DELETE, IS_SENSITIVE, IS_REGISTER
+	</sql>
+
+	<!--插入数据 -->
+	<insert id="insertStoreList"
+		parameterType="com.pzg.code.sqlproject.vo.StoreList">
+		insert into STORE_LIST
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="slId != null">
+				SL_ID,
+			</if>
+			<if test="slSlsId != null">
+				SL_SLS_ID,
+			</if>
+			<if test="slSlbId != null">
+				SL_SLB_ID,
+			</if>
+			<if test="slStId != null">
+				SL_ST_ID,
+			</if>
+			<if test="slName != null">
+				SL_NAME,
+			</if>
+			<if test="slSlcId != null">
+				SL_SLC_ID,
+			</if>
+			<if test="slTableName != null">
+				SL_TABLE_NAME,
+			</if>
+			<if test="slRemark != null">
+				SL_REMARK,
+			</if>
+			<if test="isDelete != null">
+				IS_DELETE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="slId != null">
+				#{slId,jdbcType=VARCHAR},
+			</if>
+			<if test="slSlsId != null">
+				#{slSlsId,jdbcType=VARCHAR},
+			</if>
+			<if test="slSlbId != null">
+				#{slSlbId,jdbcType=VARCHAR},
+			</if>
+			<if test="slStId != null">
+				#{slStId,jdbcType=VARCHAR},
+			</if>
+			<if test="slName != null">
+				#{slName,jdbcType=VARCHAR},
+			</if>
+			<if test="slSlcId != null">
+				#{slSlcId,jdbcType=VARCHAR},
+			</if>
+			<if test="slTableName != null">
+				#{slTableName,jdbcType=VARCHAR},
+			</if>
+			<if test="slRemark != null">
+				#{slRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="isDelete != null">
+				#{isDelete,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 逻辑批量删除记录 -->
+	<update id="deleteByPrimaryKey" parameterType="java.lang.String">
+		update STORE_LIST set IS_DELETE = 1
+		where SL_ID in
+		<foreach collection="array" item="id" separator="," open="("
+			close=")">
+			#{id,jdbcType=VARCHAR}
+		</foreach>
+	</update>
+
+	<!-- 修改记录 -->
+	<update id="updateByPrimaryKey"
+		parameterType="com.pzg.code.sqlproject.vo.StoreList">
+		update STORE_LIST
+		<set>
+			<if test="slStId != null">
+				SL_ST_ID = #{slStId,jdbcType=VARCHAR},
+			</if>
+			<if test="slSlsId != null">
+				SL_SLS_ID = #{slSlsId,jdbcType=VARCHAR},
+			</if>
+			<if test="slSlbId != null">
+				SL_SLB_ID = #{slSlbId,jdbcType=VARCHAR},
+			</if>
+			<if test="slName != null">
+				SL_NAME = #{slName,jdbcType=VARCHAR},
+			</if>
+			<if test="slSlcId != null">
+				SL_SLC_ID = #{slSlcId,jdbcType=VARCHAR},
+			</if>
+			<if test="slTableName != null">
+				SL_TABLE_NAME = #{slTableName,jdbcType=VARCHAR},
+			</if>
+			<if test="slRemark != null">
+				SL_REMARK = #{slRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="isDelete != null">
+				IS_DELETE = #{isDelete,jdbcType=INTEGER},
+			</if>
+		</set>
+		where SL_ID = #{slId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 根据主键查询 -->
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from STORE_LIST
+		where SL_ID = #{slId,jdbcType=VARCHAR} and IS_DELETE =
+		0
+	</select>
+
+	<!-- 根据参数进行联合二表模糊查询 -->
+	<select id="findByParam" resultMap="StoreListVO_Map">
+		select 
+			sl.*, 
+			st.ST_NAME, 
+			sls.SLS_NAME,
+			slb.SLB_NAME,
+			slc.SLC_NAME,
+			slc.SLC_CONTENT
+		from 
+			STORE_LIST sl, 
+			STORE_TYPE st,
+			STORE_LIST_SUPPLIER sls,
+			STORE_LIST_BUSINESS slb,
+			STORE_LIST_CONNECTION slc
+		<where>
+			sl.SL_ST_ID = st.ST_ID 
+		and	sl.SL_SLS_ID = sls.SLS_ID
+		and	sl.SL_SLB_ID = slb.SLB_ID
+		and	sl.SL_SLC_ID = slc.SLC_ID
+		and sl.IS_DELETE = 0
+			<if test="slId != null and slId != ''">
+				and sl.SL_ID = #{slId,jdbcType=VARCHAR}
+			</if>
+			<if test="slSlsId != null and slSlsId != ''">
+				and sl.SL_SLS_ID = #{slSlsId,jdbcType=VARCHAR}
+			</if>
+			<if test="slSlbId != null and slSlbId != ''">
+				and sl.SL_SLB_ID = #{slSlbId,jdbcType=VARCHAR}
+			</if>
+			<if test="slStId != null and slStId != ''">
+				and sl.SL_ST_ID = #{slStId,jdbcType=VARCHAR}
+			</if>
+			<if test="slName != null and slName != ''">
+				and sl.SL_NAME like '%'||#{slName,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="stName != null and stName != ''">
+				and st.ST_NAME like '%'||#{stName,jdbcType=VARCHAR}||'%'
+			</if>
+		</where>
+		order by sls.SLS_NAME ,st.ST_NAME asc
+	</select>
+
+	<!-- 根据存储类型id查询所有的存储列表 -->
+	<select id="selectBySlStId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from STORE_LIST
+		where SL_ST_ID = #{slStId,jdbcType=VARCHAR} and
+		IS_DELETE = 0
+	</select>
+	
+	<!-- 查询要删除的连接信息对应的数据源个数 -->
+	<select id="selectByslSlcId" parameterType="java.lang.String"
+		resultType="int">
+		select count(*) from STORE_LIST
+		where SL_SLC_ID in
+		<foreach collection="array" item="id" separator="," open="("
+			close=")">
+			#{id,jdbcType=VARCHAR}
+		</foreach>
+		and IS_DELETE = 0
+	</select>
+	
+	<!-- 修改是否敏感 -->
+	<select id="updateSensitive">
+		update  STORE_LIST set IS_SENSITIVE = #{isSensitive,jdbcType=INTEGER} where SL_ID = #{slId,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 注册 -->
+	<update id="updateRegister">
+		update  STORE_LIST set IS_REGISTER = #{isRegister,jdbcType=VARCHAR} where SL_ID = #{slId,jdbcType=VARCHAR}
+	</update>
+	
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+        namespace="com.pzg.code.sqlproject.mapper.SqlMapper">
+
+    <resultMap id="BaseResultMap"
+               type="com.pzg.code.sqlproject.vo.Sql">
+        <id column="SLS_NAME" jdbcType="VARCHAR" property="slsName"/>
+        <result column="SLB_NAME" jdbcType="VARCHAR" property="slbName"/>
+        <result column="ST_NAME" jdbcType="VARCHAR" property="stName"/>
+        <result column="SL_ID" jdbcType="VARCHAR" property="slId"/>
+        <result column="SL_NAME" jdbcType="VARCHAR" property="slName"/>
+        <result column="SL_TABLE_NAME" jdbcType="VARCHAR" property="slTableName"/>
+    </resultMap>
+
+    <!-- 根据参数进行联合二表模糊查询 -->
+    <select id="findByParam" resultMap="BaseResultMap">
+        select
+        sls.SLS_NAME,
+        slb.SLB_NAME,
+        st.ST_NAME,
+        sl.SL_ID,
+        sl.SL_NAME,
+        sl.SL_TABLE_NAME
+        from
+        STORE_LIST_SUPPLIER sls,
+        STORE_LIST_BUSINESS slb,
+        STORE_TYPE st,
+        STORE_LIST sl
+        <where>
+            sl.SL_SLS_ID = sls.SLS_ID
+            and sl.SL_SLB_ID = slb.SLB_ID
+            and sl.SL_ST_ID = st.ST_ID
+            and sl.IS_DELETE = 0
+            <if test="slsId != null and slsId != ''">
+                and sls.SLS_ID = #{slsId,jdbcType=VARCHAR}
+            </if>
+            <if test="slbId != null and slbId != ''">
+                and slb.SLB_ID = #{slbId,jdbcType=VARCHAR}
+            </if>
+            <if test="stId != null and stId != ''">
+                and st.ST_ID = #{stId,jdbcType=VARCHAR}
+            </if>
+            <if test="slName != null and slName != ''">
+                and sl.SL_NAME like '%'||#{slName,jdbcType=VARCHAR}||'%'
+            </if>
+            and st.ST_NAME in('oracle','mysql','hbase')
+        </where>
+    </select>
+
+</mapper>

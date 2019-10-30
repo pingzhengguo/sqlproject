@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzg.code.sqlproject.mapper.DataAccessMapper">
+
+    <select id="findSourcePropertis" parameterType="String" resultType="Map">
+        select DATA_SOURCE.DS_TABLE_NAME AS tablename,DATA_SOURCE_CONNECTION.DSC_CONTENT AS content from DATA_SOURCE INNER JOIN DATA_SOURCE_CONNECTION
+        on DATA_SOURCE.DS_DSC_ID = DATA_SOURCE_CONNECTION.DSC_ID where DATA_SOURCE.DS_ID = #{sourceId,jdbcType=VARCHAR}
+
+    </select>
+
+    <select id="findStorePropertis" parameterType="String" resultType="Map">
+        select STORE_LIST.SL_TABLE_NAME AS tablename,STORE_LIST_CONNECTION.SLC_CONTENT AS content from STORE_LIST INNER JOIN STORE_LIST_CONNECTION
+        on STORE_LIST.SL_SLC_ID = STORE_LIST_CONNECTION.SLC_ID where STORE_LIST.SL_ID = #{storageId,jdbcType=VARCHAR}
+
+    </select>
+
+
+</mapper>
